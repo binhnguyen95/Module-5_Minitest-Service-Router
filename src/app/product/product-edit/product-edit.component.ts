@@ -9,29 +9,21 @@ import {Product} from "../../model/product";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-
-  product: Product = {
-    id: 1,
-    name: '',
-    price: 1,
-    description: ''
-  };
-
+  productForm: FormGroup;
 
   getProduct(){
-    this.product = this.productService.getProduct();
+    return this.productService.getProduct();
   }
 
-  ngOnInit() {
-    this.getProduct()
+  constructor(private productService: ProductService) {
+    const product = this.getProduct();
+    this.productForm = new FormGroup({
+      id: new FormControl(product.id),
+      name: new FormControl(product.name),
+      price: new FormControl(product.price),
+      description: new FormControl(product.description),
+    })
   }
-
-  productForm: FormGroup = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl(),
-    price: new FormControl(),
-    description: new FormControl(),
-  });
 
   submit() {
     const product= this.productForm.value;
@@ -39,7 +31,7 @@ export class ProductEditComponent implements OnInit {
     this.productForm.reset();
   }
 
-  constructor(private productService: ProductService) { }
-
+  ngOnInit(): void {
+  }
 
 }
