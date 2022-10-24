@@ -9,20 +9,21 @@ import {Product} from "../../model/product";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  productForm: FormGroup;
 
   getProduct(){
     return this.productService.getProduct();
   }
 
+  product = this.getProduct();
+
+  productForm: FormGroup = new FormGroup({
+    id: new FormControl(this.product.id),
+    name: new FormControl(this.product.name),
+    price: new FormControl(this.product.price),
+    description: new FormControl(this.product.description),
+  });
+
   constructor(private productService: ProductService) {
-    const product = this.getProduct();
-    this.productForm = new FormGroup({
-      id: new FormControl(product.id),
-      name: new FormControl(product.name),
-      price: new FormControl(product.price),
-      description: new FormControl(product.description),
-    })
   }
 
   submit() {

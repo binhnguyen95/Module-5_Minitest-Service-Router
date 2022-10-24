@@ -16,13 +16,13 @@ export class ProductCreateComponent implements OnInit {
     description: new FormControl(),
   });
 
+  constructor(private productService: ProductService) { }
+
   submit() {
     const product = this.productForm.value;
     this.productService.saveProduct(product);
     this.productForm.reset();
   }
-
-  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
   }
