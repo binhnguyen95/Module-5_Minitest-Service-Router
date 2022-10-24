@@ -2,10 +2,7 @@
 <h1>Sữa sản phẩm </h1>
 <form [formGroup]="productForm" (ngSubmit)="submit()">
   <table>
-    <tr>
-      <td>Mã sản phẩm:</td>
       <td><input type="number" hidden formControlName="id" [(ngModel)]="product.id"></td>
-    </tr>
     <tr>
       <td>Tên sản phẩm:</td>
       <td><input type="text" formControlName="name" [(ngModel)]="product.name"></td>
