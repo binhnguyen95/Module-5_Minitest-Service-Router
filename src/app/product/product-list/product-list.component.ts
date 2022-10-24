@@ -17,6 +17,15 @@ export class ProductListComponent implements OnInit {
     this.products = this.productService.getAll();
   }
 
+  removeProduct(product: Product) {
+    return this.productService.removeProduct(product)
+  }
+
+  findById(product: Product) {
+    console.log(product)
+    return this.productService.findById(product)
+  }
+
   ngOnInit(){
     this.getAll();
   }

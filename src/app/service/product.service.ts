@@ -6,6 +6,8 @@ import {Product} from "../model/product";
 })
 export class ProductService {
 
+  product: Product = {}
+
   products: Product[] = [{
     id: 1,
     name: 'IPhone 1',
@@ -37,8 +39,29 @@ export class ProductService {
     return this.products;
   }
 
+  getProduct() {
+    return this.product;
+  }
+
+  findById(product:Product){
+    return this.product = product
+  }
+
   saveProduct(product: Product) {
     this.products.push(product);
+  }
+
+  updateProduct(product: any , id: number){
+    for(let i=0; i< this.products.length; i++){
+      if(this.products[i].id==product.id){
+        this.products[i]= product
+      }
+    }
+  }
+
+  removeProduct(product: Product){
+    const index = this.products.indexOf(product)
+    this.products.splice(index,1);
   }
 
   constructor() { }
