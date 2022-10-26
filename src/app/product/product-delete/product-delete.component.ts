@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from "../../service/product.service";
-import {Product} from "../../model/product";
 import {Subscription} from "rxjs";
+import {Product} from "../../model/product";
+import {ProductService} from "../../service/product.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  selector: 'app-product-delete',
+  templateUrl: './product-delete.component.html',
+  styleUrls: ['./product-delete.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class ProductDeleteComponent implements OnInit {
 
   sub:Subscription;
 
@@ -32,21 +32,23 @@ export class ProductEditComponent implements OnInit {
     })
   }
 
-  getProduct(id: number){
+  getProduct(id: number | undefined){
     this.productService.findProductById(id).
     subscribe(product =>{
       this.product = product;
     });
   }
 
-  updateProduct(){
-    this.productService.editProduct(this.product.id, this.product).subscribe(()=>{
-      this.router.navigate(['/']);
+  deleteProduct(id: number | undefined) {
+    this.productService.deleteProduct(id).subscribe(() => {
+      alert('Xóa thành công!');
+      this.router.navigate(['/category/list']);
+    }, e => {
+      console.log(e);
     });
-    // this.router.navigateByUrl("/");
   }
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
 }

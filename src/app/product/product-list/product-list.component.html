@@ -11,7 +11,7 @@
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
-    <td><button routerLink="/product/edit" (click)="findById(product)">Sữa</button> </td>
-    <td><button (click)="removeProduct(product)">Xóe</button> </td>
+    <td><button [routerLink]="['/product/edit',product.id]" >Sữa</button> </td>
+    <td><button [routerLink]="['/product/delete',product.id]">Xóe</button> </td>
   </tr>
 </table>

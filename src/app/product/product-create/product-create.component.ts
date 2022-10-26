@@ -20,8 +20,13 @@ export class ProductCreateComponent implements OnInit {
 
   submit() {
     const product = this.productForm.value;
-    this.productService.saveProduct(product);
-    this.productForm.reset();
+
+    this.productService.saveProduct(product).subscribe(() => {
+      this.productForm.reset();
+      alert('Tạo thành công');
+    }, e => {
+      console.log(e);
+    });
   }
 
   ngOnInit(): void {

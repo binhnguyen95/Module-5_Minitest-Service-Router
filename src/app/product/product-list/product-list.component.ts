@@ -12,18 +12,10 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-
   getAll() {
-    this.products = this.productService.getAll();
-  }
-
-  removeProduct(product: Product) {
-    return this.productService.removeProduct(product)
-  }
-
-  findById(product: Product) {
-    console.log(product)
-    return this.productService.findById(product)
+    this.productService.getAll().subscribe(products => {
+      this.products = products;
+    })
   }
 
   ngOnInit(){
